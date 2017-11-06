@@ -2,6 +2,8 @@ FROM postgres:10.0
 
 MAINTAINER Everaldo Almeida <everaldo.maestro@gmail.com>
 
+ENV ZBXUSER_PWD=${ZBXUSER_PWD}
+
 ARG DB_TYPE=postgresql
 
 ARG ZBX_VERSION=3.4.3
@@ -17,6 +19,8 @@ RUN apt-get update && \
     cp /tmp/zabbix-${ZBX_VERSION}/database/${DB_TYPE}/schema.sql /tmp && \
     cp /tmp/zabbix-${ZBX_VERSION}/database/${DB_TYPE}/data.sql /tmp && \
     rm -rf /tmp/zabbix-${ZBX_VERSION} && \
-    rm -rf /tmp/zabbix-${ZBX_VERSION}.tar.gz
+    rm -rf /tmp/zabbix-${ZBX_VERSION}.tar.gz && \
+    rm -rf /var/lib/apt/lists/* && \
+    apt-get clean
 
 COPY zabbix-db-entrypoint.sh /docker-entrypoint-initdb.d/
