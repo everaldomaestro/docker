@@ -1,6 +1,6 @@
 FROM postgres:10.0
 
-MAINTAINER Everaldo Jose Costa de Almeida <everaldo.maestro@gmail.com>
+MAINTAINER Everaldo Almeida <everaldo.maestro@gmail.com>
 
 ARG DB_TYPE=postgresql
 
