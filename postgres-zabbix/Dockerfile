@@ -8,7 +8,7 @@ ARG DB_TYPE=postgresql
 
 ARG ZBX_VERSION=3.4.3
 
-ARG ZBX_SOURCE=https://ufpr.dl.sourceforge.net/project/zabbix/ZABBIX%20Latest%20Stable/3.4.3/zabbix-${ZBX_VERSION}.tar.gz
+ARG ZBX_SOURCE=https://ufpr.dl.sourceforge.net/project/zabbix/ZABBIX%20Latest%20Stable/${ZBX_VERSION}/zabbix-${ZBX_VERSION}.tar.gz
 
 RUN apt-get update && \
     apt-get install wget -y && \
