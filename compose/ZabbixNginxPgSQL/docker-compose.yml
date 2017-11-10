@@ -2,12 +2,12 @@ version: '3'
 networks:
    composeNet:
 volumes:
-   db_data:
+   zbx_db_pgsql:
 services:
    db:
-      image: postgres:10.0
+      image: postgres:9.3
       volumes:
-       - ./db_data:/var/lib/postgresql/data
+       - ./zbx_db_pgsql:/var/lib/postgresql/data
       environment:
        - POSTGRES_PASSWORD=postgres
        - POSTGRES_DB=zabbix
@@ -16,7 +16,7 @@ services:
    server:
       depends_on:
        - db
-      image: zabbix/zabbix-server-pgsql:ubuntu-trunk
+      image: everaldomaestro/zabbix-server-pgsql:ubuntu-3.4.3
       ports:
        - "10051:10051"
       environment:
@@ -29,7 +29,7 @@ services:
       depends_on:
        - db
        - server
-      image: zabbix/zabbix-web-nginx-pgsql:ubuntu-trunk
+      image: zabbix/zabbix-web-nginx-pgsql:ubuntu-3.4.3
       ports:
        - "80:80"
        - "443:443"
