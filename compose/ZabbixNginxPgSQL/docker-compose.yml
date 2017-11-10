@@ -1,13 +1,11 @@
 version: '3'
 networks:
    composeNet:
-volumes:
-   zbx_db_pgsql:
 services:
    db:
       image: postgres:9.3
       volumes:
-       - ./zbx_db_pgsql:/var/lib/postgresql/data
+       - ./volumes/db:/var/lib/postgresql/data
       environment:
        - POSTGRES_PASSWORD=postgres
        - POSTGRES_DB=zabbix
@@ -16,6 +14,17 @@ services:
    server:
       depends_on:
        - db
+      volumes:
+       - ./volumes/server/usr/lib/zabbix/alertscripts:/usr/lib/zabbix/alertscripts
+       - ./volumes/server/usr/lib/zabbix/externalscripts:/usr/lib/zabbix/externalscripts
+       - ./volumes/server/var/lib/zabbix/modules:/var/lib/zabbix/modules
+       - ./volumes/server/var/lib/zabbix/enc:/var/lib/zabbix/enc
+       - ./volumes/server/var/lib/zabbix/ssh_keys:/var/lib/zabbix/ssh_keys
+       - ./volumes/server/var/lib/zabbix/ssl/certs:/var/lib/zabbix/ssl/certs
+       - ./volumes/server/var/lib/zabbix/ssl/keys:/var/lib/zabbix/ssl/keys
+       - ./volumes/server/var/lib/zabbix/ssl/ssl_ca:/var/lib/zabbix/ssl/ssl_ca
+       - ./volumes/server/var/lib/zabbix/snmptraps:/var/lib/zabbix/snmptraps
+       - ./volumes/server/var/lib/zabbix/mibs:/var/lib/zabbix/mibs
       image: everaldomaestro/zabbix-server-pgsql:ubuntu-3.4.3
       ports:
        - "10051:10051"
@@ -29,6 +38,8 @@ services:
       depends_on:
        - db
        - server
+      volumes:
+       - ./volumes/web/etc/ssl/nginx:/etc/ssl/nginx
       image: zabbix/zabbix-web-nginx-pgsql:ubuntu-3.4.3
       ports:
        - "80:80"
