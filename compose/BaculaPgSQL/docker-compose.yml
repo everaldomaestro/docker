@@ -17,7 +17,7 @@ services:
       volumes:
 #       - ./volumes/bacula-dir/etc/bacula:/etc/bacula
        - ./volumes/bacula-dir/var/bacula-bkp:/var/bacula-bkp
-      image: everaldomaestro/bacula:9.0.3-1
+      image: everaldomaestro/bacula-pgsql:9.0.3
       hostname: bacula-dir       
       environment:
        - DB_HOST=db
