@@ -1,0 +1,31 @@
+version: '3'
+networks:
+   composeNet:
+services:
+   db:
+      image: postgres:9.3
+      volumes:
+       - ./volumes/db:/var/lib/postgresql/data
+      hostname: db
+      environment:
+       - POSTGRES_PASSWORD=postgres
+      networks:
+       - composeNet
+   bacula-dir:
+      depends_on:
+       - db
+      volumes:
+#       - ./volumes/bacula-dir/etc/bacula:/etc/bacula
+       - ./volumes/bacula-dir/var/bacula-bkp:/var/bacula-bkp
+      image: everaldomaestro/bacula:9.0.3-1
+      hostname: bacula-dir       
+      environment:
+       - DB_HOST=db
+       - DB_PORT=5432
+       - DB_ROOT_USER=postgres
+       - DB_ROOT_PASS=postgres
+       - DB_BACULA_USER=bacula
+       - DB_BACULA_PASS=bacula
+       - DB_BACULA_DBNAME=bacula
+      networks:
+       - composeNet
