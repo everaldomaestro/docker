@@ -1,0 +1,31 @@
+version: '3'
+networks:
+   composeNet:
+services:
+   db:
+      image: mysql:5.7
+#      volumes:
+#       - ./volumes/db:/var/lib/postgresql/data
+      hostname: db
+      environment:
+       - MYSQL_ROOT_PASSWORD=mysql
+      networks:
+       - composeNet
+   bacula-dir:
+      depends_on:
+       - db
+#      volumes:
+#       - ./volumes/bacula-dir/etc/bacula:/etc/bacula
+#       - ./volumes/bacula-dir/var/bacula-bkp:/var/bacula-bkp
+      image: everaldomaestro/bacula-mysql:9.0.3
+      hostname: bacula-dir       
+      environment:
+       - DB_HOST=db
+       - DB_PORT=3306
+       - DB_ROOT_USER=root
+       - DB_ROOT_PASS=mysql
+       - DB_BACULA_USER=bacula
+       - DB_BACULA_PASS=bacula
+       - DB_BACULA_DBNAME=bacula
+      networks:
+       - composeNet
