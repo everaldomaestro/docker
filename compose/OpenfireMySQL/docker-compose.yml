@@ -1,0 +1,26 @@
+version: '3'
+networks:
+   composeNet:
+services:
+   db:
+      image: mysql:5.7
+      hostname: mysql
+      volumes:
+       - ./volumes/db/var/lib/mysql:/var/lib/mysql
+      hostname: db
+      environment:
+       - MYSQL_ROOT_PASSWORD=mysql
+       - MYSQL_DATABASE=openfire
+       - MYSQL_USER=openfire
+       - MYSQL_PASSWORD=openfire
+      networks:
+       - composeNet
+   openfire:
+      depends_on:
+       - db
+      image: everaldomaestro/openfire:4.1.6
+      hostname: openfire       
+      ports:
+       - 9090:9090
+      networks:
+       - composeNet
