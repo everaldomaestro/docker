@@ -4,9 +4,9 @@ networks:
 services:
    db:
       image: mysql:5.7
-#      volumes:
-#       - ./volumes/db:/var/lib/postgresql/data
       hostname: db
+      volumes:
+       - ./volumes/db/var/lib/mysql:/var/lib/mysql
       environment:
        - MYSQL_ROOT_PASSWORD=mysql
       networks:
