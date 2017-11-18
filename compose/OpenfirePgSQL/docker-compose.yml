@@ -1,0 +1,25 @@
+version: '3'
+networks:
+   composeNet:
+services:
+   db:
+      image: postgres:9.3
+      hostname: postgresql
+      volumes:
+       - ./volumes/db/var/lib/postgresql/data:/var/lib/postgresql/data
+      hostname: db
+      environment:
+       - POSTGRES_USER=openfire
+       - POSTGRES_PASSWORD=openfire
+       - POSTGRES_DB=openfire
+      networks:
+       - composeNet
+   openfire:
+      depends_on:
+       - db
+      image: everaldomaestro/openfire:4.1.6
+      hostname: openfire       
+      ports:
+       - 9090:9090
+      networks:
+       - composeNet
