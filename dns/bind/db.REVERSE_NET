@@ -1,0 +1,16 @@
+;
+; BIND zone file for NETWORK_NET.xxx
+;
+ 
+$TTL    3D
+@       IN      SOA     ns.DOMAIN_NAME.    root.DOMAIN_NAME. (
+                        2017061201      ; serial
+                        8H              ; refresh
+                        2H              ; retry
+                        4W              ; expire
+                        1D )            ; minimum
+;
+                NS      ns.DOMAIN_NAME.    ; Nameserver address
+ 
+;HOST_DNS             PTR     ns.DOMAIN_NAME.
+HOST_GW               PTR     router.DOMAIN_NAME.

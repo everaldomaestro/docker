@@ -1,0 +1,21 @@
+;
+; BIND zone file for DOMAIN_NAME
+;
+ 
+$TTL    3D
+@       IN      SOA     ns.DOMAIN_NAME.    root.DOMAIN_NAME. (
+                        2017061201      ; serial
+                        8H              ; refresh
+                        2H              ; retry
+                        4W              ; expire
+                        1D )            ; minimum
+;
+                NS      ns              ; Inet address of name server
+                MX      10 mail         ; Primary mail exchanger
+ 
+ns              A       SERVER_ADDRESS
+mail            A       SERVER_ADDRESS
+ 
+router          A       GATEWAY_ADDRESS	; router ADSL
+gateway         CNAME   router
+gw              CNAME   router
