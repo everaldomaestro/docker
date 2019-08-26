@@ -1,0 +1,13 @@
+-rw-r--r-- 1 root root  771 Aug 22 12:53 APICotacoes.csproj
+-rw-r--r-- 1 root root 1151 Aug 22 12:54 APICotacoes.csproj.user
+-rw-r--r-- 1 root root  146 Aug 22 12:43 appsettings.Development.json
+-rw-r--r-- 1 root root  309 Aug 23 19:57 appsettings.json
+drwxr-xr-x 3 root root 4096 Aug 22 15:37 bin
+drwxr-xr-x 2 root root 4096 Aug 22 15:37 Controllers
+-rw-r--r-- 1 root root  362 Aug 22 12:44 Cotacao.cs
+-rw-r--r-- 1 root root  480 Aug 22 12:48 CotacoesContext.cs
+-rw-r--r-- 1 root root  743 Aug 22 15:35 Dockerfile
+drwxr-xr-x 4 root root 4096 Aug 22 15:37 obj
+-rw-r--r-- 1 root root  633 Aug 22 12:43 Program.cs
+drwxr-xr-x 2 root root 4096 Aug 22 15:37 Properties
+-rw-r--r-- 1 root root 2008 Aug 22 12:52 Startup.cs
