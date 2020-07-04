@@ -1,1 +1,21 @@
-
+version: '3'
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-CU3-ubuntu-18.04
+    container_name: mssql
+    hostname: mssql.trojan.lan
+    volumes:
+      - data:/var/opt/mssql
+    networks:
+      - appnet
+    ports:
+      - 1433:1433
+    environment:
+      - SA_PASSWORD=123456
+      - ACCEPT_EULA=Y
+    restart: always
+volumes:
+  data:
+networks:
+  appnet:
+    external: true
