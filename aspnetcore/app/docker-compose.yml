@@ -1,1 +1,16 @@
-
+version: '3'
+services:
+  autenticacao:
+    image: maestro/app:1.0
+    container_name: app
+    hostname: app.docker.local
+    volumes:
+      - data:/app
+    networks:
+      - appnet
+    restart: always
+volumes:
+  data:
+networks:
+  appnet:
+    external: true
